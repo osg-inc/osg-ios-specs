@@ -14,7 +14,7 @@ target 'YourApp' do
   use_frameworks!
 
   pod 'osg-ios-sdk', '~> 1.0'
-  pod 'osg-ios-admob-mediation-adapter', '~> 0.2'
+  pod 'osg-ios-admob-mediation-adapter', '~> 0.3'
   pod 'Google-Mobile-Ads-SDK'
 end
 ```
@@ -23,7 +23,17 @@ AppLovin MAX：
 
 ```ruby
   pod 'osg-ios-sdk', '~> 1.0'
-  pod 'osg-ios-applovin-mediation-adapter', '~> 0.2'
+  pod 'osg-ios-applovin-mediation-adapter', '~> 0.3'
+  pod 'AppLovinSDK'
+```
+
+**同时接入两个 adapter**（0.3.0+，共享 `osg-ios-mediation-common`）：
+
+```ruby
+  pod 'osg-ios-sdk', '~> 1.0'
+  pod 'osg-ios-admob-mediation-adapter', '~> 0.3'
+  pod 'osg-ios-applovin-mediation-adapter', '~> 0.3'
+  pod 'Google-Mobile-Ads-SDK'
   pod 'AppLovinSDK'
 ```
 
@@ -33,8 +43,9 @@ AppLovin MAX：
 osg-ios-specs/
 ├── artifacts/                          # 二进制 zip（podspec :http 下载）
 ├── osg-ios-sdk/1.0.0/
-├── osg-ios-admob-mediation-adapter/0.2.0/
-└── osg-ios-applovin-mediation-adapter/0.2.0/
+├── osg-ios-mediation-common/0.1.0/
+├── osg-ios-admob-mediation-adapter/0.3.0/
+└── osg-ios-applovin-mediation-adapter/0.3.0/
 ```
 
 ## 重新打包 artifacts
@@ -42,7 +53,14 @@ osg-ios-specs/
 在研发仓执行：
 
 ```bash
+../osg-ios-specs/scripts/build-all.sh
+```
+
+或分步：
+
+```bash
 ../mopub-ios-sdk/scripts/build-osg-ios-sdk-binary.sh
+../mopub-ios-sdk/osg-ios-mediation-common/scripts/build-binary.sh
 ../osg-ios-admob-mediation-adapter/scripts/build-binary.sh
 ../osg-ios-applovin-mediation-adapter/scripts/build-binary.sh
 ```
