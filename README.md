@@ -42,10 +42,10 @@ AppLovin MAX：
 ```
 osg-ios-specs/
 ├── artifacts/                          # 二进制 zip（podspec :http 下载）
-├── osg-ios-sdk/1.0.0/
+├── osg-ios-sdk/1.0.1/          # 最新；1.0.0 仍可用
 ├── osg-ios-mediation-common/0.1.0/
-├── osg-ios-admob-mediation-adapter/0.3.0/
-└── osg-ios-applovin-mediation-adapter/0.3.0/
+├── osg-ios-admob-mediation-adapter/0.3.1/
+└── osg-ios-applovin-mediation-adapter/0.3.1/
 ```
 
 ## 重新打包 artifacts
