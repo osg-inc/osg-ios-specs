@@ -5,7 +5,7 @@ OSG iOS SDK 与 Mediation Adapter 的 **二进制 Podspec 与 artifacts 仓库**
 
 | Pod | 最新版本 | CocoaPods |
 | --- | --- | --- |
-| `osg-ios-sdk` | 1.0.2 | https://cocoapods.org/pods/osg-ios-sdk |
+| `osg-ios-sdk` | 1.1.0 | https://cocoapods.org/pods/osg-ios-sdk |
 | `osg-ios-mediation-common` | 0.1.0 | ✅ Trunk（adapter 依赖，自动安装） |
 | `osg-ios-admob-mediation-adapter` | 0.3.1 | ⏳ 待推 Trunk |
 | `osg-ios-applovin-mediation-adapter` | 0.3.1 | ⏳ 待推 Trunk |
@@ -110,7 +110,7 @@ AppLovin Adapter Class：`OSGAppLovinMediationAdapter`
 ```
 osg-ios-specs/
 ├── artifacts/                              # 二进制 zip
-├── osg-ios-sdk/1.0.2/
+├── osg-ios-sdk/1.1.0/
 ├── osg-ios-mediation-common/0.1.0/
 ├── osg-ios-admob-mediation-adapter/0.3.1/
 └── osg-ios-applovin-mediation-adapter/0.3.1/
@@ -135,8 +135,8 @@ pod trunk push <name>.podspec --allow-warnings
 推送顺序（有依赖，须按序执行）：
 
 ```bash
-# 1. 主 SDK（已完成 1.0.2）
-cd osg-ios-sdk/1.0.2
+# 1. 主 SDK（当前 1.1.0）
+cd osg-ios-sdk/1.1.0
 pod trunk push osg-ios-sdk.podspec --allow-warnings --skip-import-validation
 
 # 2. 等待 CDN 可解析 osg-ios-sdk（约 5–10 分钟），可用下面命令确认：
