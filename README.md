@@ -54,7 +54,7 @@ OSG.sharedInstance().initializeSdk(with: config) {
 ### AdMob Mediation
 
 ```ruby
-  pod 'osg-ios-sdk', '~> 1.0'
+  pod 'osg-ios-sdk', '~> 1.1.0'
   pod 'osg-ios-admob-mediation-adapter', '~> 0.3'
   pod 'Google-Mobile-Ads-SDK'
 ```
