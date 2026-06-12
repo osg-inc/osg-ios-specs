@@ -58,7 +58,6 @@ import OSGSDK
 
 let config = OSGConfiguration(adUnitIdForAppInitialization: "你的广告位ID")
 config.appId = "平台 appid"       // 建议
-config.appKey = "平台 app_key"    // 建议
 config.testMode = false           // 测试环境可 true
 
 OSG.sharedInstance().initializeSdk(with: config) {
@@ -117,7 +116,6 @@ source 'https://cdn.cocoapods.org/'
 | --- | --- | --- |
 | `ad_unit_id` | ✅ | OSG 广告位 ID |
 | `app_id` | 建议 | OSG `appid` |
-| `app_key` | 建议 | OSG `app_key` |
 | `test_mode` | 否 | `true` / `false` |
 
 AppLovin Adapter Class：`OSGAppLovinMediationAdapter`
