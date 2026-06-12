@@ -5,10 +5,29 @@ OSG iOS SDK 与 Mediation Adapter 的 **二进制 Podspec 与 artifacts 仓库**
 
 | Pod | 最新版本 | CocoaPods |
 | --- | --- | --- |
-| `osg-ios-sdk` | 1.1.0 | https://cocoapods.org/pods/osg-ios-sdk |
+| `osg-ios-sdk` | **1.1.0** | ✅ [Trunk](https://cocoapods.org/pods/osg-ios-sdk) |
 | `osg-ios-mediation-common` | 0.1.0 | ✅ Trunk（adapter 依赖，自动安装） |
 | `osg-ios-admob-mediation-adapter` | 0.3.1 | ⏳ 待推 Trunk |
 | `osg-ios-applovin-mediation-adapter` | 0.3.1 | ⏳ 待推 Trunk |
+
+源码仓库：[osg-inc/mopub-ios-sdk](https://github.com/osg-inc/mopub-ios-sdk)（tag `1.1.0`）
+
+---
+
+## 版本说明
+
+### 1.1.0（2026-06-12）
+
+- SDK 稳定性与兼容性更新
+- 公开接口与错误处理流程优化
+- 广告加载与展示链路细节改进
+- 内部实现调整与性能优化
+
+升级：
+
+```bash
+pod update osg-ios-sdk --repo-update
+```
 
 ---
 
@@ -22,7 +41,7 @@ platform :ios, '12.0'
 target 'YourApp' do
   use_frameworks! :linkage => :static
 
-  pod 'osg-ios-sdk', '~> 1.0'
+  pod 'osg-ios-sdk', '~> 1.1'
 end
 ```
 
@@ -54,7 +73,7 @@ OSG.sharedInstance().initializeSdk(with: config) {
 ### AdMob Mediation
 
 ```ruby
-  pod 'osg-ios-sdk', '~> 1.1.0'
+  pod 'osg-ios-sdk', '~> 1.1'
   pod 'osg-ios-admob-mediation-adapter', '~> 0.3'
   pod 'Google-Mobile-Ads-SDK'
 ```
@@ -62,7 +81,7 @@ OSG.sharedInstance().initializeSdk(with: config) {
 ### AppLovin MAX
 
 ```ruby
-  pod 'osg-ios-sdk', '~> 1.0'
+  pod 'osg-ios-sdk', '~> 1.1'
   pod 'osg-ios-applovin-mediation-adapter', '~> 0.3'
   pod 'AppLovinSDK'
 ```
@@ -72,7 +91,7 @@ OSG.sharedInstance().initializeSdk(with: config) {
 `osg-ios-mediation-common` 会由 adapter **自动依赖**，无需手写。
 
 ```ruby
-  pod 'osg-ios-sdk', '~> 1.0'
+  pod 'osg-ios-sdk', '~> 1.1'
   pod 'osg-ios-admob-mediation-adapter', '~> 0.3'
   pod 'osg-ios-applovin-mediation-adapter', '~> 0.3'
   pod 'Google-Mobile-Ads-SDK'
@@ -110,7 +129,11 @@ AppLovin Adapter Class：`OSGAppLovinMediationAdapter`
 ```
 osg-ios-specs/
 ├── artifacts/                              # 二进制 zip
-├── osg-ios-sdk/1.1.0/
+├── osg-ios-sdk/
+│   ├── 1.0.0/
+│   ├── 1.0.1/
+│   ├── 1.0.2/
+│   └── 1.1.0/                              # 当前 Trunk 最新
 ├── osg-ios-mediation-common/0.1.0/
 ├── osg-ios-admob-mediation-adapter/0.3.1/
 └── osg-ios-applovin-mediation-adapter/0.3.1/
@@ -124,25 +147,32 @@ osg-ios-specs/
 
 或分步执行 `mopub-ios-sdk`、`osg-ios-mediation-common`、两 adapter 仓库下的 `scripts/build-binary.sh`。
 
+主 SDK 单独打包（示例 1.1.0）：
+
+```bash
+cd ../mopub-ios-sdk
+OSG_SDK_VERSION=1.1.0 ./scripts/build-osg-ios-sdk-binary.sh
+```
+
 ## 发布到 CocoaPods Trunk
 
 新版本发版后，在对应 podspec 目录执行：
 
 ```bash
-pod trunk push <name>.podspec --allow-warnings
+pod trunk push <name>.podspec --allow-warnings --skip-import-validation
 ```
 
 推送顺序（有依赖，须按序执行）：
 
 ```bash
-# 1. 主 SDK（当前 1.1.0）
+# 1. 主 SDK（1.1.0 已发布 Trunk）
 cd osg-ios-sdk/1.1.0
 pod trunk push osg-ios-sdk.podspec --allow-warnings --skip-import-validation
 
 # 2. 等待 CDN 可解析 osg-ios-sdk（约 5–10 分钟），可用下面命令确认：
 pod spec cat osg-ios-sdk
 
-# 3. 共享库（已完成 0.1.0，可跳过）
+# 3. 共享库（0.1.0 已发布 Trunk，可跳过）
 # cd osg-ios-mediation-common/0.1.0
 # pod trunk push osg-ios-mediation-common.podspec --allow-warnings --skip-import-validation
 
