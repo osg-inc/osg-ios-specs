@@ -135,7 +135,7 @@ pod trunk push <name>.podspec --allow-warnings
 推送顺序（有依赖，须按序执行）：
 
 ```bash
-# 1. 主 SDK（待推 1.0.2）
+# 1. 主 SDK（已完成 1.0.2）
 cd osg-ios-sdk/1.0.2
 pod trunk push osg-ios-sdk.podspec --allow-warnings --skip-import-validation
 
